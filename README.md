@@ -1,1 +1,9 @@
-# findwork.com
+# Overview:
+A basic Spring Web MVC project for searching/offering job positions with two different account possibilities - "User" and "Company".
+
+# Technologies:
+* Spring Boot
+* PostgreSQL
+* HTML
+* CSS + Bootstrap
+* JS + Thymeleaf
