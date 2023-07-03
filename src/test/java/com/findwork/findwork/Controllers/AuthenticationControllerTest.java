@@ -48,7 +48,7 @@ class AuthenticationControllerTest {
 
     private String[] skills = {"Karucar","Hlebar","Bezdelnik","Moshenik","Igrach","Piqnica","Narkoman","Pisar","Muzikant","Hudojnik","Rabota s Excel",
             "Programist","Bodibildur","Montajnik","Vodoprovodchik","Gangster","Tiradjiq", "Lepi mazilka", "Kurti", "Hamalin", "Ribar", "Jenkar"};
-    private String[] educations = {"Sredno profesionalno", "Sredno", "Vishe", "Bez(ot malcinstvoto)", "Bakalavur", "Magistur", "Profesor", "Osnovno"};
+    private String[] educations = {"Sredno profesionalno", "Sredno", "Vishe", "Bez", "Bakalavur", "Magistur", "Profesor", "Osnovno"};
 
     private Random rand = new Random();
 
