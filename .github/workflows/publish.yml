@@ -16,8 +16,8 @@ jobs:
         uses: docker/login-action@v1
         with:
           registry: ghcr.io
-          username: WORKFLOW_SECRET
-          password: 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
+          username: ${{ secrets.GHCR_USERNAME }}
+          password: ${{ secrets.GHCR_PASSWORD }}
 
       - name: Build and publish the Docker image
         run: docker-compose up -d
