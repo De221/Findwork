@@ -1,0 +1,4 @@
+com\findwork\findwork\Controllers\AuthenticationControllerTest.class
+com\findwork\findwork\FindworkApplicationTests.class
+com\findwork\findwork\Controllers\JobOfferControllerTest.class
+com\findwork\findwork\Repositories\UserPersonRepositoryTest.class
