@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.findwork.findwork.Controllers.AuthenticationControllerTest
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 45.954 s - in com.findwork.findwork.Controllers.AuthenticationControllerTest
