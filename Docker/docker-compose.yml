@@ -2,14 +2,14 @@ version: '3.7'
 
 services:
   db:
-    image: "postgres:latest"
+    image: "postgres"
     container_name: postgres-container
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=admin
       - POSTGRES_DB=findwork.com
   app:
-    image: "findwork:latest"
+    image: "findwork"
     build:
       context: ..
     container_name: findwork
