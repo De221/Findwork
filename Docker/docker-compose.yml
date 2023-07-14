@@ -9,7 +9,7 @@ services:
       - POSTGRES_PASSWORD=admin
       - POSTGRES_DB=findwork.com
   app:
-    image: "docker-spring-boot-postgres:latest"
+    image: "findwork:latest"
     build:
       context: ..
     container_name: findwork
