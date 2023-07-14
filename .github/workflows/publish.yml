@@ -11,6 +11,6 @@ with:
 registry: ghcr.io
 username: ${{ De221 }}
 password: ${{ secrets.WORKFLOW_SECRET }}
-  - name: Build the hello-docker Docker image
+  - name: Build the docker image
 run: |
   docker-compose up -d
