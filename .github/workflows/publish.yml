@@ -23,4 +23,4 @@ jobs:
         run: |
               cd Docker
               docker-compose up -d
-              docker push De221/findwork:latest
+              docker push de221/findwork:latest
