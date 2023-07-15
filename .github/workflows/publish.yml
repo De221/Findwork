@@ -23,4 +23,4 @@ jobs:
         run: |
               cd Docker
               docker-compose up -d
-              docker push ghcr.io/findwork:latest
+              docker push De221/findwork:latest
