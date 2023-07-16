@@ -9,7 +9,7 @@ services:
       - POSTGRES_PASSWORD=admin
       - POSTGRES_DB=findwork.com
   app:
-    image: "ghcr.io/findwork"
+    image: "findwork"
     build:
       context: ..
     container_name: findwork
