@@ -29,7 +29,8 @@ public class UserService implements UserDetailsService {
         UserPerson foundPerson = personRepo.findUserPersonByUsername(username);
         UserCompany foundCompany = companyRepo.findUserCompanyByUsername(username);
 
-        if (foundCompany == null && foundPerson == null) {
+        if (foundCompany == null && foundPerson == null)
+        {
             throw new UsernameNotFoundException("No user found");
         }
 
@@ -64,7 +65,7 @@ public class UserService implements UserDetailsService {
 
         if (r.getEmail() != null) {
             if (personRepo.findUserPersonByUsername(r.getEmail()) == null
-                    || companyRepo.findUserCompanyByUsername(r.getEmail()) == null)
+                    && companyRepo.findUserCompanyByUsername(r.getEmail()) == null)
                 questionablePerson.setUsername(r.getEmail());
             else throw new Exception("An account with this email already exists");
         }
@@ -89,7 +90,7 @@ public class UserService implements UserDetailsService {
         UserCompany questionableCompany = companyRepo.findUserCompanyById(id);
         if (r.getEmail() != null) {
             if (personRepo.findUserPersonByUsername(r.getEmail()) == null
-                    || companyRepo.findUserCompanyByUsername(r.getEmail()) == null)
+                    && companyRepo.findUserCompanyByUsername(r.getEmail()) == null)
                 questionableCompany.setUsername(r.getEmail());
             else throw new Exception("An account with this email already exists");
         }
