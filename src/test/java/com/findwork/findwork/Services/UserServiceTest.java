@@ -16,8 +16,6 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.test.web.servlet.MockMvc;
 import static org.mockito.Mockito.verify;
 
 import static org.junit.Assert.*;
