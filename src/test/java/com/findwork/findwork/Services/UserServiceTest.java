@@ -16,6 +16,8 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import static org.mockito.Mockito.verify;
 
 import static org.junit.Assert.*;
@@ -30,6 +32,8 @@ public class UserServiceTest
     private UserPersonRepository userRepo;
     @Mock
     private UserCompanyRepository companyRepo;
+    @Mock
+    BCryptPasswordEncoder bCryptPasswordEncoder;
     @InjectMocks
     private UserService userService;
     UserPerson user1 = new UserPerson("user1@abv.bg", "password", "firstName", "lastName", LocalDate.of(1999, 1, 1));
