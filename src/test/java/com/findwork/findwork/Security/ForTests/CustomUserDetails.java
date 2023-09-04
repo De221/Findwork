@@ -1,8 +1,11 @@
 package com.findwork.findwork.Security.ForTests;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.UUID;
 
 public class CustomUserDetails implements UserDetails {
@@ -17,8 +20,9 @@ public class CustomUserDetails implements UserDetails {
     }
 
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+    public Collection<? extends GrantedAuthority> getAuthorities()
+    {
+        return Arrays.asList(new SimpleGrantedAuthority("User"));
     }
 
     @Override

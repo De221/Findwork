@@ -2,8 +2,11 @@ package com.findwork.findwork.Security.ForTests;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.UUID;
 
 public class CustomAuthentication implements Authentication
@@ -19,8 +22,9 @@ public class CustomAuthentication implements Authentication
     }
 
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+    public Collection<? extends GrantedAuthority> getAuthorities()
+    {
+        return Arrays.asList(new SimpleGrantedAuthority("User"));
     }
 
     @Override
@@ -40,16 +44,15 @@ public class CustomAuthentication implements Authentication
 
     @Override
     public boolean isAuthenticated() {
-        return false;
+        return true;
     }
 
     @Override
     public void setAuthenticated(boolean isAuthenticated) throws IllegalArgumentException {
-
     }
 
     @Override
     public String getName() {
-        return null;
+        return "user1@abv.bg";
     }
 }
