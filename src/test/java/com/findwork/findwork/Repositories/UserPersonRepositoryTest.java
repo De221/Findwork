@@ -1,44 +1,77 @@
 package com.findwork.findwork.Repositories;
 
 import com.findwork.findwork.Entities.Users.UserPerson;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.assertj.core.api.Assertions.assertThat;
 
-
-//@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-@SpringBootTest
+@DataJpaTest // uses the embedded database for testing from the com.h2database dependency
 class UserPersonRepositoryTest {
     @Autowired
     private UserPersonRepository repo;
 
-    @Autowired
-    private BCryptPasswordEncoder encoder;
-
-    @Disabled("Just for learning purposes")
+    // Create a sample UserPerson entity
+    UserPerson user1 = new UserPerson("user1@abv.bg", "password", "firstName", "lastName", LocalDate.of(1999, 1, 1));
     @Test
-    void registerPerson() throws Exception
+    public void testFindUserPersonByUsername()
     {
-        for(int i = 1; i<= 7; i++)
-        {
-            UserPerson person = new UserPerson();
-            person.setUsername("TestUser"+ i +"@gmail.com");
-            person.setPassword(encoder.encode("12345678"));
-            person.setFirstName("TestUser");
-            person.setLastName(Integer.toString(i));
-            person.setBirthDate(LocalDate.parse("1999-12-27"));
+        // Create a sample UserPerson entity
+        UserPerson user1 = new UserPerson("user1@abv.bg", "password", "firstName", "lastName", LocalDate.of(1999, 1, 1));
 
-            if(repo.findUserPersonByUsername(person.getUsername()) == null)
-            {
-                repo.save(person);
-            }
-            assertNotNull(repo.findUserPersonByUsername(person.getUsername()));
-        }
+
+        // Save the entity to the database
+        repo.save(user1);
+
+        // Use the repository method to retrieve the entity
+        UserPerson foundUser = repo.findUserPersonByUsername("user1@abv.bg");
+
+        // Assert that the retrieved entity matches the saved entity
+        assertThat(foundUser).isNotNull();
+        assertThat(foundUser.getUsername()).isEqualTo("user1@abv.bg");
+        assertThat(foundUser.getId()).isEqualTo(user1.getId());
+    }
+    @Test
+    public void testFindUserPersonById() {
+        // Create a sample UserPerson entity
+        UserPerson user1 = new UserPerson("user1@abv.bg", "password", "firstName", "lastName", LocalDate.of(1999, 1, 1));
+
+        // Save the entity to the database
+        repo.save(user1);
+        UUID personId = user1.getId();
+        // Use the repository method to retrieve the entity
+        UserPerson foundUser = repo.findUserPersonById(personId);
+        // Assert that the retrieved entity matches the saved entity
+        assertThat(foundUser).isNotNull();
+        assertThat(foundUser.getUsername()).isEqualTo("user1@abv.bg");
+        assertThat(foundUser.getId()).isEqualTo(user1.getId());
+    }
+
+    @Test
+    public void testFindUserPeopleByUsernameStartsWith() {
+        UserPerson user1 = new UserPerson("user1@abv.bg", "password", "firstName", "lastName", LocalDate.of(1999, 1, 1));
+        UserPerson user2 = new UserPerson("user2@abv.bg", "password", "firstName", "lastName", LocalDate.of(1999, 1, 1));
+        UserPerson user3 = new UserPerson("user3@abv.bg", "password", "firstName", "lastName", LocalDate.of(1999, 1, 1));
+
+        List<UserPerson> savedUsers = new ArrayList<>();
+        savedUsers.add(user1);
+        savedUsers.add(user2);
+        savedUsers.add(user3);
+
+        repo.save(user1);
+        repo.save(user2);
+        repo.save(user3);
+
+        // Use the repository method to retrieve the entity
+        List<UserPerson> foundUsers = repo.findUserPeopleByUsernameStartsWith("user");
+        // Assert that the retrieved entity matches the saved entity
+        assertThat(foundUsers).isNotNull();
+        assertThat(foundUsers.equals(savedUsers));
     }
 }
