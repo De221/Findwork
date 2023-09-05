@@ -1,6 +1,7 @@
-package com.findwork.findwork.Repositories;
+package com.findwork.findwork;
 
 import com.findwork.findwork.Entities.Users.UserPerson;
+import com.findwork.findwork.Repositories.UserPersonRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
