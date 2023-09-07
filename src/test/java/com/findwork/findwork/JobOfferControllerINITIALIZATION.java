@@ -96,7 +96,6 @@ class JobOfferControllerINITIALIZATION {
     }
 
 
-    @Disabled
     @Test
     void saveOfferAndApply()
     {
