@@ -15,14 +15,12 @@ import com.findwork.findwork.Services.UserService;
 import com.findwork.findwork.Services.ValidationService;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -35,9 +33,9 @@ import java.util.Random;
 
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
-@ExtendWith(SpringExtension.class)
+
 @SpringBootTest
-class JobOfferControllerINITIALIZATION {
+class JobOfferControllerINITIALIZATIONTest {
     @Autowired
     AuthenticationManager am;
     @Autowired
