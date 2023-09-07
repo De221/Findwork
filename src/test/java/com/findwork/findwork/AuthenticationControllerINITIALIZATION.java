@@ -1,4 +1,4 @@
-package com.findwork.findwork.Initialization;
+package com.findwork.findwork;
 
 import com.findwork.findwork.Controllers.AuthenticationController;
 import com.findwork.findwork.Controllers.UserController;
