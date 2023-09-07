@@ -36,7 +36,7 @@ import static org.mockito.Mockito.mock;
 
 @SpringBootTest
 @DisplayName("User Registration Controller")
-class AuthenticationControllerINITIALIZATION {
+class AuthenticationControllerINITIALIZATIONTest {
     @Autowired
     ValidationService vs;
     @Autowired
