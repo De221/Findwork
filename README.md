@@ -21,7 +21,7 @@ services:
   app:
     image: "ghcr.io/de221/findwork"
     build:
-      context: .
+      context: ..
       dockerfile: Dockerfile
     container_name: findwork
     ports:
