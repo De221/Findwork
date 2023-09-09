@@ -5,7 +5,10 @@ import com.findwork.findwork.Requests.EditPersonRequest;
 import com.findwork.findwork.Services.UserService;
 import com.findwork.findwork.Services.ValidationService;
 import lombok.AllArgsConstructor;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -56,7 +59,16 @@ public class UserController {
             model.addAttribute("error", e.getMessage());
             return "editPerson";
         }
-
+        renewAuthentication(request.getEmail());
         return "redirect:/user/" + id;
+    }
+
+    public void renewAuthentication(String username) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserPerson changedUser = (UserPerson) authentication.getPrincipal();
+        changedUser.setUsername(username);
+
+        SecurityContext context = SecurityContextHolder.createEmptyContext();
+        context.setAuthentication(new UsernamePasswordAuthenticationToken(changedUser.getUsername(), changedUser.getPassword()));
     }
 }
