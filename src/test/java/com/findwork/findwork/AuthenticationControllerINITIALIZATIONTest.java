@@ -8,6 +8,7 @@ import com.findwork.findwork.Repositories.UserPersonRepository;
 import com.findwork.findwork.Requests.EditPersonRequest;
 import com.findwork.findwork.Requests.RegisterCompanyRequest;
 import com.findwork.findwork.Requests.RegisterPersonRequest;
+import com.findwork.findwork.Security.ForTests.WithMockCustomUser;
 import com.findwork.findwork.Services.UserService;
 import com.findwork.findwork.Services.ValidationService;
 import org.junit.jupiter.api.Disabled;
@@ -16,8 +17,13 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.ui.Model;
 
@@ -104,6 +110,16 @@ class AuthenticationControllerINITIALIZATIONTest {
 
             UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(personRequest.getEmail(), personRequest.getPassword());
             authToken.setDetails(new WebAuthenticationDetails(request));
+
+            //The following 7 lines Mock the renewAuthentication(String username) method in the controller
+            Authentication mockAuthentication = mock(Authentication.class);
+            SecurityContext mockSecurityContext = mock(SecurityContext.class);
+            // Set the mock Authentication into the mock SecurityContext
+            Mockito.when(mockSecurityContext.getAuthentication()).thenReturn(mockAuthentication);
+            Mockito.when(mockAuthentication.getPrincipal()).thenReturn(registeredPerson);
+            // Set the mock SecurityContext to the SecurityContextHolder
+            SecurityContextHolder.setContext(mockSecurityContext);
+
             uc.editPerson(registeredPerson.getId(), editRequest, model, am.authenticate(authToken));
         }
 
